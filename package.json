@@ -1,0 +1,21 @@
+{
+  "name": "larabot",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "app.js": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "cheerio": "^1.0.0-rc.12",
+    "discord.js": "^14.11.0",
+    "dotenv": "^16.3.1",
+    "iconv-lite": "^0.6.3",
+    "puppeteer": "^21.0.1"
+  },
+  "description": ""
+}
