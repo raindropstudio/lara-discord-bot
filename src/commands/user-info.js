@@ -1,7 +1,8 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 const getUserInfo = require('../services/crawler');
-const randomQuote = require('../services/random-quote');
+const randomQuote = require('../modules/random-quote');
+const calculateExpPercentage = require('../modules/exp-calculator.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -15,7 +16,7 @@ module.exports = {
 		const nickname = interaction.options.getString('닉네임');
 		const userInfo = await getUserInfo(nickname);
 
-		console.log('Image URL:', userInfo.characterImg);
+		//console.log('Image URL:', userInfo.characterImg); //캐릭터 이미지 URL 검사
 
 		const embed = new EmbedBuilder()
 			.setAuthor({ name: '\u200B', iconURL: userInfo.serverImg})
@@ -28,9 +29,10 @@ module.exports = {
 				//{ name: '직업', value: userInfo.job, inline: true },
 				//{ name: '\u200B', value: '\u200B', inline: false },
 				{ name: '【 레벨 】', value: `\`${userInfo.level}\``, inline: true },
+				{ name: '【 경험치% 】', value: `\`${calculateExpPercentage(userInfo.level, userInfo.experience)}%\``, inline: true },				
 				{ name: '【 경험치 】', value: `\`${userInfo.experience}\``, inline: false },
 				{ name: '【 인기도 】', value: `\`${userInfo.pop}\``, inline: true },
-				{ name: '【 길드 】', value: `\`${userInfo.guild}\``, value: userInfo.guild && userInfo.guild.length > 0 ? `\`${userInfo.guild}\`` : '없음', inline: true })
+				{ name: '【 길드 】', value: userInfo.guild && userInfo.guild.length > 0 ? `\`${userInfo.guild}\`` : '없음', inline: true })			
 			//.setImage('https://ssl.nexon.com/s2/game/maplestory/renewal/common/world_icon/icon_13.png', inline = true)
 			.setFooter({ text: randomQuote.getRandomQuote(), iconURL: 'https://ssl.nexon.com/s2/game/maplestory/renewal/common/world_icon/icon_1.png' });
 		await interaction.reply({ embeds: [embed] });
