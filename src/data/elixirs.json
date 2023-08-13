@@ -1,0 +1,26 @@
+{
+    "extremeGrowthElixir": {
+        "maxLevel": 200,
+        "fixedExp": 571115568
+    },
+    "growthElixir1": {
+        "maxLevel": 209,
+        "fixedExp": 6120258214
+    },
+    "growthElixir2": {
+        "maxLevel": 219,
+        "fixedExp": 22164317197
+    },
+    "growthElixir3": {
+        "maxLevel": 229,
+        "fixedExp": 64359295696
+    },
+    "typhoonGrowthElixir": {
+        "maxLevel": 239,
+        "fixedExp": 137783047111
+    },
+    "ultimateGrowthElixir": {
+        "maxLevel": 249,
+        "fixedExp": 294971656640
+    }
+}
