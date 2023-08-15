@@ -33,7 +33,7 @@ const calculateElixirResults = (currentLevel, currentExpPercentage, elixirsUsed)
   // 결과로 현재 레벨과 경험치 퍼센트를 반환
   return {
     level: currentLevel,
-    percentage: finalExpPercentage
+    percentage: finalExpPercentage.toFixed(3)
   };
 };
 
