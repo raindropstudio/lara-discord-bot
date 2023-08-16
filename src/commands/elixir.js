@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
+const colors = require('../assets/colors.js');
 const calculateElixirResults = require('../modules/elixir-calculator');
 const randomQuote = require('../modules/random-quote');
 
@@ -59,7 +60,7 @@ module.exports = {
 		});
 
 		const resultEmbed = new EmbedBuilder()
-		.setColor('#fcf74c')
+		.setColor(colors.primary)
 		.setTitle('비약 사용 결과')
 		.setFooter({ text: randomQuote.getRandomQuote(), iconURL: 'https://ssl.nexon.com/s2/game/maplestory/renewal/common/world_icon/icon_1.png' })
 		.setDescription(`사용 전 레벨: ${currentLevel}\n사용 전 경험치%: ${currentExpPercentage}\n사용 후 레벨: ${elixirResults.level}\n사용 후 경험치%: ${elixirResults.percentage}%`);

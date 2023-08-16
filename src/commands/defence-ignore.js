@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
+const colors = require('../assets/colors.js');
 const randomQuote = require('../modules/random-quote');
 
 module.exports = {
@@ -45,7 +46,7 @@ module.exports = {
 		const resultEmbed = new EmbedBuilder()
 			.setThumbnail('http://avatar.maplestory.nexon.com/SkillIcon/KFGDLHPBOD.png')
 			//.setAuthor({ name: '방어력은 숫자일 뿐', /*iconURL: 'http://avatar.maplestory.nexon.com/SkillIcon/KFGDLHPBOD.png'*/})
-			.setColor('#fcf74c')
+			.setColor(colors.primary)
 			.setTitle('방무 증가 수치')
 			.setDescription(`> 최종적으로 계산된 방무 수치입니다. \n\`\`\`${totalIgnore.toFixed(2)}%\`\`\``)
 			.setFooter({ text: randomQuote.getRandomQuote(), iconURL: 'https://ssl.nexon.com/s2/game/maplestory/renewal/common/world_icon/icon_1.png' });

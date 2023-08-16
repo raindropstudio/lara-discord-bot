@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 const getUserInfo = require('../services/crawler');
+const colors = require('../assets/colors.js');
 const randomQuote = require('../modules/random-quote');
 const calculateExpPercentage = require('../modules/exp-calculator.js');
 
@@ -21,7 +22,7 @@ module.exports = {
 		const embed = new EmbedBuilder()
 			.setAuthor({ name: '\u200B', iconURL: userInfo.serverImg})
 			.setTitle(`**「   ${nickname}   」**`)
-			.setColor('#fcf74c')
+			.setColor(colors.primary)
 			.setThumbnail(userInfo.characterImg)
 			.setDescription(`> ${userInfo.job}\n`, inline = false)
 			.addFields(

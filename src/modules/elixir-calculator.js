@@ -37,5 +37,4 @@ const calculateElixirResults = (currentLevel, currentExpPercentage, elixirsUsed)
   };
 };
 
-
 module.exports = calculateElixirResults;
