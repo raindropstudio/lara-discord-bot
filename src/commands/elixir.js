@@ -3,6 +3,7 @@ const { EmbedBuilder } = require('discord.js');
 const colors = require('../assets/colors.js');
 const calculateElixirResults = require('../modules/elixir-calculator');
 const randomQuote = require('../modules/random-quote');
+const icons = require('../assets/icons.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -62,7 +63,7 @@ module.exports = {
 		const resultEmbed = new EmbedBuilder()
 		.setColor(colors.primary)
 		.setTitle('비약 사용 결과')
-		.setFooter({ text: randomQuote.getRandomQuote(), iconURL: 'https://ssl.nexon.com/s2/game/maplestory/renewal/common/world_icon/icon_1.png' })
+		.setFooter({ text: randomQuote.getRandomQuote(), iconURL: icons.mapleLeap })
 		.setDescription(`사용 전 레벨: ${currentLevel}\n사용 전 경험치%: ${currentExpPercentage}\n사용 후 레벨: ${elixirResults.level}\n사용 후 경험치%: ${elixirResults.percentage}%`);
 			if (extremeElixir > 0) resultEmbed.addFields({ name: `익스트림 성장의 비약 ${extremeElixir} 개`, value: '\u200B', inline: true });
 			if (elixir1 > 0) resultEmbed.addFields({ name: `성장의 비약 1 ${elixir1}개`, value: '\u200B', inline: true });

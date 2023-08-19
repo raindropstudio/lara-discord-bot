@@ -2,6 +2,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 const getEventInfo = require('../services/event-sunday-parser');
 const colors = require('../assets/colors.js');
+const icons = require('../assets/icons.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -31,7 +32,7 @@ module.exports = {
 			)
 			.setImage(eventInfo.image)
 			.setColor(colors.primary)
-			.setFooter({ text: `썬데이 메이플 내용은 변동될 수 있으니 자세한 사항은 홈페이지를 참고해주세요.`, iconURL: 'https://ssl.nexon.com/s2/game/maplestory/renewal/common/world_icon/icon_1.png' });
+			.setFooter({ text: `썬데이 메이플 내용은 변동될 수 있으니 자세한 사항은 홈페이지를 참고해주세요.`, iconURL: icons.mapleLeap });
 
 		await interaction.reply({ embeds: [embed] });
 	},

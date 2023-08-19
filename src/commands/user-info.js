@@ -4,6 +4,7 @@ const getUserInfo = require('../services/crawler');
 const colors = require('../assets/colors.js');
 const randomQuote = require('../modules/random-quote');
 const calculateExpPercentage = require('../modules/exp-calculator.js');
+const icons = require('../assets/icons.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -35,7 +36,7 @@ module.exports = {
 				{ name: '【 인기도 】', value: `\`${userInfo.pop}\``, inline: true },
 				{ name: '【 길드 】', value: userInfo.guild && userInfo.guild.length > 0 ? `\`${userInfo.guild}\`` : '없음', inline: true })			
 			//.setImage('https://ssl.nexon.com/s2/game/maplestory/renewal/common/world_icon/icon_13.png', inline = true)
-			.setFooter({ text: randomQuote.getRandomQuote(), iconURL: 'https://ssl.nexon.com/s2/game/maplestory/renewal/common/world_icon/icon_1.png' });
+			.setFooter({ text: randomQuote.getRandomQuote(), iconURL: icons.mapleLeap });
 		await interaction.reply({ embeds: [embed] });
 		console.log(embed);
 	},

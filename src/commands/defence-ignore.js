@@ -2,6 +2,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 const colors = require('../assets/colors.js');
 const randomQuote = require('../modules/random-quote');
+const icons = require('../assets/icons.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -49,7 +50,7 @@ module.exports = {
 			.setColor(colors.primary)
 			.setTitle('방무 증가 수치')
 			.setDescription(`> 최종적으로 계산된 방무 수치입니다. \n\`\`\`${totalIgnore.toFixed(2)}%\`\`\``)
-			.setFooter({ text: randomQuote.getRandomQuote(), iconURL: 'https://ssl.nexon.com/s2/game/maplestory/renewal/common/world_icon/icon_1.png' });
+			.setFooter({ text: randomQuote.getRandomQuote(), iconURL: icons.mapleLeap });
 		await interaction.reply({ embeds: [resultEmbed] });
 	},
 };
