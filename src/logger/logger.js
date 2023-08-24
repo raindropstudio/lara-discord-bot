@@ -1,3 +1,50 @@
+//일별 로그 파일 생성
+const winston = require('winston'); 
+const path = require('path'); 
+require('winston-daily-rotate-file');
+
+const logDirPath = path.join(__dirname, '..', '..', 'logs');
+
+// Logger 객체 생성
+const logger = winston.createLogger({
+    level: 'info', // 로그의 최소 레벨을 'info'로 설정
+    format: winston.format.combine( // 로그의 포맷을 결합하여 설정
+        winston.format.timestamp({
+            format: 'YYYY-MM-DD HH:mm:ss'
+        }),
+        // 로그 메시지의 출력 형식을 설정
+        winston.format.printf(info => `[${info.timestamp}] ${info.level}: ${info.message}`)
+    ),
+    transports: [ 
+        new winston.transports.DailyRotateFile({
+            dirname: logDirPath,
+            filename: 'command-usage-%DATE%.log',
+            datePattern: 'YYYY-MM-DD',
+            zippedArchive: true,
+            maxSize: '20m',
+            maxFiles: '14d'
+        })
+    ]
+});
+
+// 개발 환경에서만 콘솔에 로그를 출력하도록 설정
+if (process.env.NODE_ENV !== 'production') {
+    logger.add(new winston.transports.Console({
+        format: winston.format.combine(
+            winston.format.colorize(), // 콘솔 로그에 색상을 추가
+            winston.format.timestamp({ // 콘솔 로그에도 시간을 포함
+                format: 'YYYY-MM-DD HH:mm:ss'
+            }),
+            winston.format.printf(info => `[${info.timestamp}] ${info.level}: ${info.message}`) 
+        )
+    }));
+}
+
+module.exports = logger;
+
+
+/*
+//기존 로그 파일 생성(한 파일에 모든 로그 기록)
 const winston = require('winston'); 
 const path = require('path'); 
 
@@ -32,3 +79,4 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 module.exports = logger;
+*/
