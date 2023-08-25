@@ -1,7 +1,8 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
+const commandLogger = require('../logger/command-logger');
 const getAdditionalOptions = require('../modules/getAdditionalOptions');
-const colors = require('../assets/colors.js');
+const colors = require('../assets/colors');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -12,6 +13,9 @@ module.exports = {
 			.setDescription('추가옵션을 확인할 무기의 이름을 "정확히" 입력해주세요! (예: 앱솔 완드 X, 앱솔랩스 스펠링완드 O)')
 			.setRequired(true)),
 	async execute(interaction) {
+
+		commandLogger.logCommandUsage(interaction);
+
 		const inputName = interaction.options.getString('무기이름');
 		const result = getAdditionalOptions(inputName);
 
@@ -22,6 +26,7 @@ module.exports = {
 				.setDescription(result.options.join(' / '));
 			await interaction.reply({ embeds: [embed] });
 		} else {
+			commandLogger.logCommandIssue(interaction);
 			const embed = new EmbedBuilder()
 				.setTitle('문제가 발생했어요!')
 				.setColor(colors.error)

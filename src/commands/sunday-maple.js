@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 const getEventInfo = require('../services/event-sunday-parser');
+const commandLogger = require('../logger/command-logger');
 const colors = require('../assets/colors.js');
 const icons = require('../assets/icons.js');
 
@@ -10,6 +11,7 @@ module.exports = {
 		.setDescription('설레는 일요일, 라라가 썬데이 메이플 이벤트 정보를 알려드릴게요!'),
 	async execute(interaction) {
 		const eventInfo = await getEventInfo();
+		commandLogger.logCommandUsage(interaction);
 
 		// 썬데이 이벤트가 없을 때
 		if (typeof eventInfo === 'string') {

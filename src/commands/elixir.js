@@ -4,6 +4,7 @@ const colors = require('../assets/colors.js');
 const calculateElixirResults = require('../modules/elixir-calculator');
 const randomQuote = require('../modules/random-quote');
 const icons = require('../assets/icons.js');
+const commandLogger = require('../logger/command-logger');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -42,6 +43,7 @@ module.exports = {
                 .setDescription('사용할 극한 성장의 비약의 갯수를 입력하세요.')
                 .setRequired(false)),
 	async execute(interaction) {
+		commandLogger.logCommandUsage(interaction);
 		const currentLevel = interaction.options.getInteger('현재레벨');
 		const currentExpPercentage = interaction.options.getNumber('현재경험치퍼센트');
 		const extremeElixir = interaction.options.getInteger('익스트림성장의비약') || 0;

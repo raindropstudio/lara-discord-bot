@@ -5,6 +5,7 @@ const colors = require('../assets/colors.js');
 const randomQuote = require('../modules/random-quote');
 const calculateExpPercentage = require('../modules/exp-calculator.js');
 const icons = require('../assets/icons.js');
+const commandLogger = require('../logger/command-logger');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -15,6 +16,7 @@ module.exports = {
 				.setDescription('닉네임을 입력하세요.')
 				.setRequired(true)),
 	async execute(interaction) {
+		commandLogger.logCommandUsage(interaction); //로그 기록
 		const nickname = interaction.options.getString('닉네임');
 		const userInfo = await getUserInfo(nickname);
 

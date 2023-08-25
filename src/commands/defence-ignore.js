@@ -3,6 +3,7 @@ const { EmbedBuilder } = require('discord.js');
 const colors = require('../assets/colors.js');
 const randomQuote = require('../modules/random-quote');
 const icons = require('../assets/icons.js');
+const commandLogger = require('../logger/command-logger');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -26,26 +27,57 @@ module.exports = {
 				.setRequired(false)),
 
 	async execute(interaction) {
+
+		commandLogger.logCommandUsage(interaction); //로그 기록
+
 		const statIgnore = interaction.options.getNumber('스탯창방무');
-		let totalIgnore = statIgnore;
-		
 		const firstIgnore = interaction.options.getNumber('방무1');
+		const secondIgnore = interaction.options.getNumber('방무2');
+		const thirdIgnore = interaction.options.getNumber('방무3');
+
+		// 입력 값을 검증하는 부분
+		if (!statIgnore || statIgnore < 0 || statIgnore > 100) {
+			return replyWithError(interaction, '스탯창 방무는 값이 100%를 넘길 수 없어요!');
+		}
+
+		if (!firstIgnore || firstIgnore < 0 || firstIgnore > 40 || 
+			(secondIgnore && (secondIgnore < 0 || secondIgnore > 40)) || 
+			(thirdIgnore && (thirdIgnore < 0 || thirdIgnore > 40))) {
+			return replyWithError(interaction, '방무 옵션의 수치는 각각 40%를 넘을 수 없어요!');
+		}
+
+		let totalIgnore = statIgnore;
+
 		if (firstIgnore != null) {
 			totalIgnore = totalIgnore + (100 - totalIgnore) * firstIgnore / 100;
 		}
 
-		const secondIgnore = interaction.options.getNumber('방무2');
 		if (secondIgnore != null) {
 			totalIgnore = totalIgnore + (100 - totalIgnore) * secondIgnore / 100;
 		}
 
-		const thirdIgnore = interaction.options.getNumber('방무3');
 		if (thirdIgnore != null) {
 			totalIgnore = totalIgnore + (100 - totalIgnore) * thirdIgnore / 100;
 		}
 
+		if (totalIgnore > 100) {
+			return replyWithError(interaction);
+		}
+		
+		//명령어 오류일 때
+		function replyWithError(interaction, message) {
+			commandLogger.logCommandIssue(interaction); //오류 로그 기록
+			
+			const errorEmbed = new EmbedBuilder()
+				.setColor(colors.error)
+				.setTitle('다시 입력해주세요!')
+				.setDescription(message)
+				//.setFooter({ text: '다시 시도해주세요.', iconURL: icons.errorIcon });
+			return interaction.reply({ embeds: [errorEmbed] });
+		}
+
 		const resultEmbed = new EmbedBuilder()
-			.setThumbnail('http://avatar.maplestory.nexon.com/SkillIcon/KFGDLHPBOD.png')
+			.setThumbnail(icons.defenceIgnore)
 			//.setAuthor({ name: '방어력은 숫자일 뿐', /*iconURL: 'http://avatar.maplestory.nexon.com/SkillIcon/KFGDLHPBOD.png'*/})
 			.setColor(colors.primary)
 			.setTitle('방무 증가 수치')
@@ -53,4 +85,5 @@ module.exports = {
 			.setFooter({ text: randomQuote.getRandomQuote(), iconURL: icons.mapleLeap });
 		await interaction.reply({ embeds: [resultEmbed] });
 	},
+	
 };
