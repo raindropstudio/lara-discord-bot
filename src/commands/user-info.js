@@ -32,9 +32,9 @@ module.exports = {
 				//{ name: '닉네임', value: userInfo.nickname, inline: true },
 				//{ name: '직업', value: userInfo.job, inline: true },
 				//{ name: '\u200B', value: '\u200B', inline: false },
-				{ name: '【 레벨 】', value: `\`${userInfo.level}\`  ${calculateExpPercentage(userInfo.level, userInfo.experience)}`, inline: true },
+				{ name: '【 레벨 】', value: `\`${userInfo.level}\``, inline: true },
 				//{ name: '\u200B', value: `\`${calculateExpPercentage(userInfo.level, userInfo.experience)} %\``, inline: true },				
-				{ name: '【 경험치 】', value: `\`${userInfo.experience}\``, inline: false },
+				{ name: '【 경험치 】', value: ` \`${calculateExpPercentage(userInfo.level, userInfo.experience)}% (${userInfo.experience})\``, inline: false },
 				{ name: '【 인기도 】', value: `\`${userInfo.pop}\``, inline: true },
 				{ name: '【 길드 】', value: userInfo.guild && userInfo.guild.length > 0 ? `\`${userInfo.guild}\`` : '없음', inline: true })			
 			//.setImage('https://ssl.nexon.com/s2/game/maplestory/renewal/common/world_icon/icon_13.png', inline = true)
