@@ -14,19 +14,28 @@ const coreTypeDisplayNames = {
 };
 
 function validateLevels(startLevel, targetLevel) {
-    if (startLevel >= 30 || startLevel < 1) {
-        return "시작 레벨은 1 ~ 29 사이여야 합니다.";
+    if (startLevel >= 30 || startLevel < 0) {
+        return "시작 레벨은 0 ~ 29 사이여야 해요!";
     }
 
     if (targetLevel > 30 || targetLevel <= 0) {
-        return "목표 레벨은 1 ~ 30 사이여야 합니다.";
+        return "목표 레벨은 0 ~ 30 사이여야 해요!";
     }
 
     if (startLevel >= targetLevel) {
-        return "시작 레벨은 목표 레벨보다 작아야 합니다.";
+        return "시작 레벨은 목표 레벨보다 작아야 해요!";
     }
 
     return null;
+}
+
+function createErrorEmbed(interaction, message) {
+    commandLogger.logCommandIssue(interaction, message); // 이 부분도 수정
+    const embed = new EmbedBuilder()
+        .setColor(colors.error)
+        .setTitle("다시 입력해주세요!")
+        .setDescription(message);
+    return embed;
 }
 
 module.exports = {
@@ -51,13 +60,20 @@ module.exports = {
             option.setName('목표레벨')
             .setDescription('강화 목표 레벨을 입력하세요.')
             .setRequired(true)),
-            
+
     async execute(interaction) {
         commandLogger.logCommandUsage(interaction);
 
         const coreType = interaction.options.getString('코어종류');
         const startLevel = interaction.options.getNumber('시작레벨');
         const targetLevel = interaction.options.getNumber('목표레벨');
+
+        const errorMessage = validateLevels(startLevel, targetLevel);
+        if (errorMessage) {
+            const errorEmbed = createErrorEmbed(interaction, errorMessage);
+            await interaction.reply({ embeds: [errorEmbed] });
+            return;
+        }
 
         const coreTypeDisplayName = coreTypeDisplayNames[coreType] || coreType;
         const result = solErdaCalculator(coreType, startLevel, targetLevel);
