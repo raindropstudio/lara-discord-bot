@@ -6,5 +6,6 @@ module.exports = {
     'solErda' : 'http://avatar.maplestory.nexon.com/ItemIcon/KBPCCCKH.png', //솔 에르다
     'chuchuBooster' : 'http://avatar.maplestory.nexon.com/ItemIcon/KHJBNBLD.png', //츄츄 부스터
     'ultimateGrowthElixir' : 'http://avatar.maplestory.nexon.com/ItemIcon/KHJBIBME.png', //극한 성장의 비약
+    'vipBuff' : 'https://avatar.maplestory.nexon.com/ItemIcon/KHPAPGIC.png', //VIP 버프
 }
 
