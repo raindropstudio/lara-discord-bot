@@ -15,7 +15,7 @@ module.exports = {
       const description = await characterOcid(characterName);
       const resultEmbed = new EmbedBuilder()
         .setTitle("OCID 정보")
-        .setColor(parseInt(colors.error.replace("#", ""), 16))
+        .setColor(parseInt(colors.primary.replace("#", ""), 16))
         .setDescription(description);
 
       await interaction.reply({ embeds: [resultEmbed] });
@@ -28,7 +28,7 @@ module.exports = {
 
       const errorEmbed = new EmbedBuilder()
         .setTitle("OCID 조회 오류")
-        .setColor(parseInt(colors.error.replace("#", ""), 16))
+        .setColor(parseInt(colors.error.replace("#", ""), 16)) // color.js 형변환
         .setDescription("메이플스토리 API 서버에서 조회되지 않는 캐릭터입니다.");
 
       if (interaction.replied || interaction.deferred) {
