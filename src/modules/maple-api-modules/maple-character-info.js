@@ -2,8 +2,8 @@ require("dotenv").config();
 const axios = require("axios");
 const api_token = process.env.MAPLE_API_TOKEN;
 
-async function characterInfo(ocid) {
-  const url = `https://open.api.nexon.com/maplestory/v1/character/basic?ocid=${ocid}&date=2024-03-20`;
+async function characterInfo(ocid, date = "") {
+  const url = `https://open.api.nexon.com/maplestory/v1/character/basic?ocid=${ocid}${date ? "&date=" + date : ""}`;
 
   try {
     const response = await axios.get(url, {
