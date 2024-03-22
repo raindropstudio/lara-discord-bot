@@ -16,7 +16,7 @@ async function characterInfo(characterName, date = "") {
     });
 
     const characterInfo = response.data;
-    console.log(characterInfo);
+    //console.log(characterInfo);
 
     return characterInfo;
   } catch (error) {

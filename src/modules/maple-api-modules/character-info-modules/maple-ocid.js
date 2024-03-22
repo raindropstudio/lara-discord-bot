@@ -13,8 +13,8 @@ async function characterOcid(characterName) {
     });
 
     const ocid = response.data.ocid;
-    console.log(characterName);
-    console.log(ocid);
+    //console.log(characterName);
+    //console.log(ocid);
     return ocid;
   } catch (error) {
     console.error("API 호출 중 오류가 발생했습니다: ", error.message);
