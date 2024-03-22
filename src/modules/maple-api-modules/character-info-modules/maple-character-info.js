@@ -1,5 +1,5 @@
 require("dotenv").config();
-const getCharacterOCID = require("../maple-api-modules/maple-ocid");
+const getCharacterOCID = require("./maple-ocid");
 const axios = require("axios");
 const api_token = process.env.MAPLE_API_TOKEN;
 

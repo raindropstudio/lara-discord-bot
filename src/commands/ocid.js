@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("@discordjs/builders");
-const characterOcid = require("../modules/maple-api-modules/maple-ocid.js");
+const characterOcid = require("../modules/maple-api-modules/character-info-modules/maple-ocid.js");
 const colors = require("../assets/colors.js");
 const commandLogger = require("../logger/command-logger.js");
 

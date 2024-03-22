@@ -1,6 +1,6 @@
 require("dotenv").config();
-const getCharacterInfo = require("../modules/maple-api-modules/maple-character-info");
-const getCharacterOCID = require("../modules/maple-api-modules/maple-ocid");
+const getCharacterInfo = require("../modules/maple-api-modules/character-info-modules/maple-character-info");
+const getCharacterOCID = require("../modules/maple-api-modules/character-info-modules/maple-ocid");
 
 async function test() {
   try {

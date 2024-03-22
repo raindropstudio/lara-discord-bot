@@ -5,7 +5,7 @@ const colors = require('../assets/colors.js');
 const randomQuote = require('../modules/random-quote');
 const icons = require('../assets/icons.js');
 const commandLogger = require('../logger/command-logger');
-const getCharacterInfo = require('../modules/maple-api-modules/maple-character-info.js');
+const getCharacterInfo = require('../modules/maple-api-modules/character-info-modules/maple-character-info.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
