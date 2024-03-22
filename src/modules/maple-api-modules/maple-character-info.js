@@ -1,8 +1,11 @@
 require("dotenv").config();
+const getCharacterOCID = require("../maple-api-modules/maple-ocid");
 const axios = require("axios");
 const api_token = process.env.MAPLE_API_TOKEN;
 
-async function characterInfo(ocid, date = "") {
+async function characterInfo(characterName, date = "") {
+
+  const ocid = await getCharacterOCID(characterName);
   const url = `https://open.api.nexon.com/maplestory/v1/character/basic?ocid=${ocid}${date ? "&date=" + date : ""}`;
 
   try {
@@ -13,7 +16,7 @@ async function characterInfo(ocid, date = "") {
     });
 
     const characterInfo = response.data;
-    //console.log(characterInfo);
+    console.log(characterInfo);
 
     return characterInfo;
   } catch (error) {
