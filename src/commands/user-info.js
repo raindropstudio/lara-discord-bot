@@ -5,6 +5,7 @@ const colors = require('../assets/colors.js');
 const randomQuote = require('../modules/random-quote');
 const icons = require('../assets/icons.js');
 const commandLogger = require('../logger/command-logger');
+const getCharacterPop = require('../modules/maple-api-modules/character-info-modules/maple-character-pop.js');
 const getCharacterInfo = require('../modules/maple-api-modules/character-info-modules/maple-character-info.js');
 
 module.exports = {
@@ -21,6 +22,7 @@ module.exports = {
 		
 		try {
       const userInfo = await getCharacterInfo(nickname);
+      const userPop = await getCharacterPop(nickname);
 
 			const embed = new EmbedBuilder()
         .setAuthor({ name: '\u200B', iconURL: getServerIconUrl(userInfo.world_name)})
@@ -31,7 +33,7 @@ module.exports = {
 				.addFields(
 					{ name: '【 레벨 】', value: `\`${userInfo.character_level}\``, inline: true },
 					{ name: '【 경험치 】', value: ` \`${(userInfo.character_exp_rate)}% (${userInfo.character_exp})\``, inline: false },
-					//{ name: '【 인기도 】', value: `\`${userInfo.pop}\``, inline: true },
+					{ name: '【 인기도 】', value: `\`${userPop.popularity}\``, inline: true },
 					{ name: '【 길드 】', value: userInfo.character_guild_name && userInfo.character_guild_name.length > 0 ? `\`${userInfo.character_guild_name}\`` : '없음', inline: true })
 				.setFooter({ text: randomQuote.getRandomQuote(), iconURL: icons.mapleLeap });
 			await interaction.reply({ embeds: [embed] });
