@@ -17,7 +17,7 @@ const characterStats = async(characterName, date = '') => {
     //console.log(characterStatsData);
     return characterStatsData;
   } catch (error) {
-    console.error("캐릭터 스탯 관련 정보를 호출 중 오류가 발생했습니다: ", error.message);
+    console.error("캐릭터 스탯 관련 정보를 호출 중 오류가 발생했습니다:", error.message);
     if (error.response) {
       console.log(characterName);
       console.log(error.response.data);
