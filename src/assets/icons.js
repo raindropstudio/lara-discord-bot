@@ -7,6 +7,7 @@ module.exports = {
     'chuchuBooster' : 'http://avatar.maplestory.nexon.com/ItemIcon/KHJBNBLD.png', //츄츄 부스터
     'ultimateGrowthElixir' : 'http://avatar.maplestory.nexon.com/ItemIcon/KHJBIBME.png', //극한 성장의 비약
     'vipBuff' : 'https://avatar.maplestory.nexon.com/ItemIcon/KHPAPGIC.png', //VIP 버프
+    'statElixir' : 'http://avatar.maplestory.nexon.com/ItemIcon/KHPCPHLI.png', //향상된 10단계 지능의 물약
 
     //서버 아이콘 리스트 번호
     '오로라' : 4, '레드' : 5, '이노시스' : 6, '유니온' : 7, '스카니아' : 8, '루나' : 9, 
