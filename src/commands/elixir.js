@@ -43,7 +43,7 @@ module.exports = {
     const resultEmbed = new EmbedBuilder()
       .setColor(colors.primary)
       .setTitle("비약 사용 결과")
-      .setFooter({ text: randomQuote.getRandomQuote(), iconURL: icons.mapleLeap })
+      .setFooter({ text: randomQuote.getRandomQuote(), iconURL: icons.mapleLeaf })
       .setDescription(
         `사용 전 레벨: ${currentLevel}\n사용 전 경험치%: ${currentExpPercentage}\n사용 후 레벨: ${elixirResults.level}\n사용 후 경험치%: ${elixirResults.percentage}%`
       );

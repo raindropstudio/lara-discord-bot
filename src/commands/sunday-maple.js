@@ -34,7 +34,7 @@ module.exports = {
 			)
 			.setImage(eventInfo.image)
 			.setColor(colors.primary)
-			.setFooter({ text: `썬데이 메이플 내용은 변동될 수 있으니 자세한 사항은 홈페이지를 참고해주세요.`, iconURL: icons.mapleLeap });
+			.setFooter({ text: `썬데이 메이플 내용은 변동될 수 있으니 자세한 사항은 홈페이지를 참고해주세요.`, iconURL: icons.mapleLeaf });
 
 		await interaction.reply({ embeds: [embed] });
 	},

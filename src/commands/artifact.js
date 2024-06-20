@@ -28,7 +28,7 @@ module.exports = {
       const currentDate = new Date().toISOString().split('T')[0];
 
       const embed = new EmbedBuilder()
-        .setThumbnail(icons.mapleLeap)
+        .setThumbnail(icons.mapleLeaf)
         .setTitle(`${nickname}의 아티팩트 정보`)
         .setColor(colors.primary)
         .setDescription(`> ${currentDate} 기준`, true)
@@ -44,7 +44,7 @@ module.exports = {
           );
         });
 
-      embed.setFooter({ text: randomQuote.getRandomQuote(), iconURL: icons.mapleLeap });
+      embed.setFooter({ text: randomQuote.getRandomQuote(), iconURL: icons.mapleLeaf });
       await interaction.reply({ embeds: [embed] });
     } catch (error) {
       console.log('아티팩트 정보를 가져오는 중 오류가 발생했습니다:', error);

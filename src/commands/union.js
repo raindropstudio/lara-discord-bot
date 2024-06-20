@@ -34,7 +34,7 @@ module.exports = {
           { name: '【 유니온 레벨 】', value: `\`\`\`${unionInfo.union_level}\`\`\``, inline: false },
           { name: '【 유니온 등급 】', value: `\`${unionInfo.union_grade}\``, inline: false },
         )
-        .setFooter({ text: randomQuote.getRandomQuote(), iconURL: icons.mapleLeap });
+        .setFooter({ text: randomQuote.getRandomQuote(), iconURL: icons.mapleLeaf });
         await interaction.reply({ embeds: [embed] });
     } catch (error) {
       console.log('유니온 정보를 가져오는 중 오류가 발생했습니다:', error); // 오류 메시지를 로그에 출력합니다.

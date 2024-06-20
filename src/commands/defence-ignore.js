@@ -82,7 +82,7 @@ module.exports = {
 			.setColor(colors.primary)
 			.setTitle('방무 증가 수치')
 			.setDescription(`> 최종적으로 계산된 방무 수치입니다. \n\`\`\`${totalIgnore.toFixed(2)}%\`\`\``)
-			.setFooter({ text: randomQuote.getRandomQuote(), iconURL: icons.mapleLeap });
+			.setFooter({ text: randomQuote.getRandomQuote(), iconURL: icons.mapleLeaf });
 		await interaction.reply({ embeds: [resultEmbed] });
 	},
 	

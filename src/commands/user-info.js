@@ -42,7 +42,7 @@ module.exports = {
 					{ name: '【 경험치 】', value: ` \`${(userInfo.character_exp_rate)}% (${userInfo.character_exp})\``, inline: false },
 					{ name: '【 인기도 】', value: `\`${userPop.popularity}\``, inline: true },
 					{ name: '【 길드 】', value: userInfo.character_guild_name && userInfo.character_guild_name.length > 0 ? `\`${userInfo.character_guild_name}\`` : '없음', inline: true })
-				.setFooter({ text: randomQuote.getRandomQuote(), iconURL: icons.mapleLeap });
+				.setFooter({ text: randomQuote.getRandomQuote(), iconURL: icons.mapleLeaf });
 			await interaction.reply({ embeds: [embed] });
 		} catch (error) {
       console.error('전투력 정보를 가져오는 중 오류가 발생했습니다:', error); // 오류 메시지를 로그에 출력합니다.

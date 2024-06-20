@@ -87,7 +87,7 @@ module.exports = {
                 { name: '【 총 필요한 솔 에르다 갯수 】', value: `> \`${result.solErda}개\``, inline: false },
                 { name: '【 총 필요한 솔 에르다 조각 갯수 】', value: `> \`${result.solErdaPiece}개\``, inline: false },
             )
-            .setFooter({ text: randomQuote.getRandomQuote(), iconURL: icons.mapleLeap });
+            .setFooter({ text: randomQuote.getRandomQuote(), iconURL: icons.mapleLeaf });
             await interaction.reply({ embeds: [embed] });
 
     }
