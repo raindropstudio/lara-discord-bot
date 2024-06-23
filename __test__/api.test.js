@@ -5,15 +5,29 @@ const getCharacterStats = require("../src/modules/maple-api-modules/character-in
 const getCashEquipmentInfo = require("../src/modules/maple-api-modules/character-info-modules/maple-cash-equipment");
 const getArtifactInfo = require("../src/modules/maple-api-modules/character-info-modules/maple-character-artifact");
 const getUnionInfo = require("../src/modules/maple-api-modules/character-info-modules/maple-character-union");
+const getGuildInfo = require("../src/modules/maple-api-modules/character-info-modules/maple-guild-info");
 
 describe("MapleStory API 테스트", () => {
   const testNickname = "빙캔"; // 테스트할 캐릭터 닉네임
+  const invalidNickname = "유효하지않은닉네임"; // 유효하지 않은 닉네임
+  const testWorld = "엘리시움"; // 테스트할 월드 이름
+  const testGuild = "항해"; // 테스트할 길드 이름
 
   test("OCID를 올바르게 가져오는지 테스트", async () => {
     expect.assertions(1); // 예상되는 assertion 수를 지정
     const characterOCID = await getCharacterOCID(testNickname);
     console.log("OCID:", characterOCID);
     expect(characterOCID).toBeDefined(); // OCID가 정의되어 있는지 확인
+  });
+
+  test("유효하지 않은 닉네임에 대한 OCID를 가져오는지 테스트", async () => {
+    expect.assertions(1);
+    try {
+      await getCharacterOCID(invalidNickname);
+    } catch (error) {
+      console.log("유효하지 않은 닉네임에 대한 OCID 오류:", error.message);
+      expect(error).toBeDefined(); // 오류가 발생했는지 확인
+    }
   });
 
   test("캐릭터 정보를 올바르게 가져오는지 테스트", async () => {
@@ -24,7 +38,7 @@ describe("MapleStory API 테스트", () => {
       expect(characterInfo).toHaveProperty("character_level"); // 캐릭터 정보에 "character_level" 속성이 있는지 확인
     } catch (error) {
       console.error("캐릭터 정보를 가져오는 중 오류가 발생했습니다: ", error.message);
-      throw error; // 오류가 발생했음을 테스트에게 알립니다.
+      throw error; // 오류가 발생했음을 테스트에게 알림.
     }
   });
 
@@ -72,6 +86,18 @@ describe("MapleStory API 테스트", () => {
       expect(unionInfo).toHaveProperty("union_level"); // 유니온 정보에 "union_level" 속성이 있는지 확인
     } catch (error) {
       console.error("유니온 정보를 가져오는 중 오류가 발생했습니다: ", error.message);
+      throw error;
+    }
+  });
+
+  test("길드 정보를 올바르게 가져오는지 테스트", async () => {
+    expect.assertions(1);
+    try {
+      const guildInfo = await getGuildInfo(testWorld, testGuild);
+      console.log("Guild Info:", guildInfo);
+      expect(guildInfo).toHaveProperty("guild_level"); // 길드 정보에 "guild_level" 속성이 있는지 확인
+    } catch (error) {
+      console.error("길드 정보를 가져오는 중 오류가 발생했습니다: ", error.message);
       throw error;
     }
   });
